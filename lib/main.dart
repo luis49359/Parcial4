@@ -15,7 +15,7 @@ class FirebaseAPP extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Firebase Firestore',
+      title: 'SKY FLIES',
       home: Principal(),
     );
   }
