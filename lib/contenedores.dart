@@ -1,3 +1,4 @@
+import 'package:firebase_flutter/mttoDestinos.dart';
 import 'package:firebase_flutter/mttoReservas.dart';
 import 'package:firebase_flutter/mttoClientes.dart';
 import 'package:firebase_flutter/mttoVuelos.dart';
@@ -24,7 +25,7 @@ class _ContenedoresState extends State<Contenedores> {
   Widget spotBody() {
     return IndexedStack(
         index: menu_activo,
-        children: [mttoClientes(), mttoReservas(), mttoVuelos()]);
+        children: [mttoClientes(), mttoReservas(), mttoVuelos(), mttoDestinos()]);
   }
 
   Widget spotFooter() {
@@ -51,7 +52,7 @@ class _ContenedoresState extends State<Contenedores> {
                   });
                 },
                 icon: Icon(items[index],
-                    color: menu_activo == index ? Colors.blue[50] : Colors.white));
+                    color: menu_activo == index ? Color.fromARGB(255, 68, 129, 173) : Colors.white));
           }),
         ),
       ),

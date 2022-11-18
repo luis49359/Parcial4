@@ -82,13 +82,11 @@ class _mttoClientesState extends State<mttoClientes> {
                     elevation: 16,
                     style: const TextStyle(color: Colors.black),
                     onSaved: (String? value) {
-                      // This is called when the user selects an item.
                       setState(() {
                         dropdownValue = value!;
                       });
                     },
                     onChanged: (String? value) {
-                      // This is called when the user selects an item.
                     },
                     items: listIdReserva
                         .map<DropdownMenuItem<String>>((String value) {
@@ -123,10 +121,11 @@ class _mttoClientesState extends State<mttoClientes> {
                           "usuario": usuario,
                           "idReservas": reserva
                         });
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Cliente ' +
                                 usuario +
                                 ' agregado exitosamente')));
+                        }   
                         _nombreController.text = "";
                         _apellidoController.text = "";
                         _fechaNacController.text = "";
@@ -135,7 +134,6 @@ class _mttoClientesState extends State<mttoClientes> {
                         _usuarioController.text = "";
                         _tipoController.text = "";
                         Navigator.of(context).pop();
-                      }
                     },
                   )
                 ],
@@ -213,13 +211,12 @@ class _mttoClientesState extends State<mttoClientes> {
                     elevation: 16,
                     style: const TextStyle(color: Colors.black),
                     onSaved: (String? value) {
-                      // This is called when the user selects an item.
                       setState(() {
                         dropdownValue = value!;
                       });
                     },
                     onChanged: (String? value) {
-                      // This is called when the user selects an item.
+                      dropdownValue = value!;
                     },
                     items: listIdReserva
                         .map<DropdownMenuItem<String>>((String value) {
@@ -243,6 +240,7 @@ class _mttoClientesState extends State<mttoClientes> {
                       final String usuario = _usuarioController.text;
                       final int? cedula = int.tryParse(_cedulaController.text);
                       final int? reserva = int.tryParse(dropdownValue);
+                      print(dropdownValue);
                       if (reserva != null && cedula != null) {
                         await _clientes.doc(documentSnapshot!.id).update({
                           "nombre": nombre,
@@ -254,19 +252,18 @@ class _mttoClientesState extends State<mttoClientes> {
                           "usuario": usuario,
                           "idReservas": reserva
                         });
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('Cliente ' +
-                                usuario +
-                                ' editado exitosamente')));
-                        _nombreController.text = "";
-                        _apellidoController.text = "";
-                        _fechaNacController.text = "";
-                        _cedulaController.text = "";
-                        _sexoController.text = "";
-                        _usuarioController.text = "";
-                        _tipoController.text = "";
-                        Navigator.of(context).pop();
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(
+                              'Cliente ' + usuario + ' editado exitosamente')));
                       }
+                      _nombreController.text = "";
+                      _apellidoController.text = "";
+                      _fechaNacController.text = "";
+                      _cedulaController.text = "";
+                      _sexoController.text = "";
+                      _usuarioController.text = "";
+                      _tipoController.text = "";
+                      Navigator.of(context).pop();
                     },
                   )
                 ],
@@ -286,8 +283,8 @@ class _mttoClientesState extends State<mttoClientes> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[50],
-      appBar: barraSpotApp(),
-      body: cuerpoSpot(),
+      appBar: barraApp(),
+      body: cuerpo(),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _create(),
         child: const Icon(Icons.add),
@@ -296,8 +293,8 @@ class _mttoClientesState extends State<mttoClientes> {
     );
   }
 
-  barraSpotApp() {
-    return AppBar(
+  barraApp() {
+   AppBar(
       backgroundColor: Colors.blue[50],
       elevation: 10,
       title: Padding(
@@ -315,7 +312,7 @@ class _mttoClientesState extends State<mttoClientes> {
     );
   }
 
-  cuerpoSpot() {
+  cuerpo() {
     if (listIdReserva.isEmpty) {
       _reservas.snapshots().forEach(
         (element) {

@@ -18,7 +18,7 @@ class _PrincipalState extends State<Principal> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text('SKY FLIES')),
+          title: const Center(child: Text('SKY AIRLINE')),
         ),
         body: Contenedores());
   }
